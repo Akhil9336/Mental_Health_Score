@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mental Health Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-texture" aria-hidden="true"></div>
+
+<div class="page">
+
+  <header class="hero">
+    <p class="eyebrow">Student wellness analytics</p>
+    <h1 class="hero__title">Mental Health <em>Signal</em></h1>
+    <p class="hero__sub">A quick read on how habits, screen time, and stress are trending — modeled from your daily rhythm, not a diagnosis.</p>
+  </header>
+
+  <main class="layout">
+
+    <!-- ============ FORM COLUMN ============ -->
+    <section class="card form-card" aria-labelledby="formHeading">
+      <h2 id="formHeading" class="sr-only">Prediction form</h2>
+
+      <form id="predictForm" novalidate>
+
+        <!-- ---- 01 Profile ---- -->
+        <fieldset class="fset">
+          <legend><span class="fset__num">01</span> Profile</legend>
+          <div class="grid-3">
+
+            <div class="field">
+              <label for="age">Age</label>
+              <input type="number" id="age" name="age" min="21" max="100" step="1" placeholder="22" required />
+              <span class="field__hint">21–100</span>
+              <span class="field__error" id="err-age"></span>
+            </div>
+
+            <div class="field">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <span class="field__error" id="err-gender"></span>
+            </div>
+
+            <div class="field">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" placeholder="India" list="countryList" autocomplete="off" required />
+              <datalist id="countryList">
+                <option value="India"></option>
+                <option value="USA"></option>
+                <option value="Canada"></option>
+                <option value="Australia"></option>
+                <option value="UK"></option>
+                <option value="Germany"></option>
+                <option value="Mexico"></option>
+                <option value="Turkey"></option>
+                <option value="France"></option>
+              </datalist>
+              <span class="field__hint">Not listed? Type it anyway.</span>
+              <span class="field__error" id="err-country"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- ---- 02 Academic & Digital Habits ---- -->
+        <fieldset class="fset">
+          <legend><span class="fset__num">02</span> Academic &amp; Digital Habits</legend>
+          <div class="grid-2">
+
+            <div class="field">
+              <label for="academic_level">Academic level</label>
+              <select id="academic_level" name="academic_level" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="High School">High School</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+              </select>
+              <span class="field__error" id="err-academic_level"></span>
+            </div>
+
+            <div class="field">
+              <label for="most_used_platform">Most-used platform</label>
+              <select id="most_used_platform" name="most_used_platform" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="Facebook">Facebook</option>
+                <option value="LinkedIn">LinkedIn</option>
+                <option value="Instagram">Instagram</option>
+                <option value="Snapchat">Snapchat</option>
+                <option value="Twitter">Twitter</option>
+                <option value="YouTube">YouTube</option>
+                <option value="TikTok">TikTok</option>
+                <option value="LINE">LINE</option>
+                <option value="KakaoTalk">KakaoTalk</option>
+                <option value="VKontakte">VKontakte</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="WeChat">WeChat</option>
+              </select>
+              <span class="field__error" id="err-most_used_platform"></span>
+            </div>
+
+            <div class="field">
+              <label for="purpose_of_use">Primary purpose</label>
+              <select id="purpose_of_use" name="purpose_of_use" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="Networking">Networking</option>
+                <option value="Education">Education</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News">News</option>
+              </select>
+              <span class="field__error" id="err-purpose_of_use"></span>
+            </div>
+
+            <div class="field">
+              <label for="avg_daily_usage_hours">Avg. daily screen time</label>
+              <div class="input-suffix">
+                <input type="number" id="avg_daily_usage_hours" name="avg_daily_usage_hours" min="0" max="24" step="0.1" placeholder="2" required />
+                <span class="suffix">hrs</span>
+              </div>
+              <span class="field__hint">0–24</span>
+              <span class="field__error" id="err-avg_daily_usage_hours"></span>
+            </div>
+
+            <div class="field">
+              <label for="daily_unlocks">Daily phone unlocks</label>
+              <input type="number" id="daily_unlocks" name="daily_unlocks" min="0" step="1" placeholder="50" required />
+              <span class="field__hint">0 or more</span>
+              <span class="field__error" id="err-daily_unlocks"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <!-- ---- 03 Lifestyle & Stress ---- -->
+        <fieldset class="fset">
+          <legend><span class="fset__num">03</span> Lifestyle &amp; Stress</legend>
+          <div class="grid-2">
+
+            <div class="field">
+              <label for="study_hours">Study hours / day</label>
+              <div class="input-suffix">
+                <input type="number" id="study_hours" name="study_hours" min="0" max="24" step="0.1" placeholder="4" required />
+                <span class="suffix">hrs</span>
+              </div>
+              <span class="field__hint">0–24</span>
+              <span class="field__error" id="err-study_hours"></span>
+            </div>
+
+            <div class="field">
+              <label for="physical_activity_hours">Physical activity / day</label>
+              <div class="input-suffix">
+                <input type="number" id="physical_activity_hours" name="physical_activity_hours" min="0" max="24" step="0.1" placeholder="1" required />
+                <span class="suffix">hrs</span>
+              </div>
+              <span class="field__hint">0–24</span>
+              <span class="field__error" id="err-physical_activity_hours"></span>
+            </div>
+
+            <div class="field">
+              <label for="sleep_hours_per_night">Sleep hours / night</label>
+              <div class="input-suffix">
+                <input type="number" id="sleep_hours_per_night" name="sleep_hours_per_night" min="0" max="24" step="0.1" placeholder="7" required />
+                <span class="suffix">hrs</span>
+              </div>
+              <span class="field__hint">0–24</span>
+              <span class="field__error" id="err-sleep_hours_per_night"></span>
+            </div>
+
+            <div class="field">
+              <label for="stress_level">Stress level</label>
+              <select id="stress_level" name="stress_level" required>
+                <option value="" disabled selected>Select…</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Very High">Very High</option>
+              </select>
+              <span class="field__error" id="err-stress_level"></span>
+            </div>
+
+          </div>
+        </fieldset>
+
+        <p class="form-msg" id="formMsg" role="alert" aria-live="assertive"></p>
+
+        <div class="actions">
+          <button type="submit" class="btn btn--primary" id="submitBtn">
+            <span class="btn__label">Run prediction</span>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button type="button" class="btn btn--ghost" id="resetBtn">Clear form</button>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- ============ RESULT COLUMN ============ -->
+    <aside class="card result-card" aria-labelledby="resultHeading">
+      <h2 id="resultHeading" class="sr-only">Predicted score</h2>
+
+      <div class="orbit" aria-hidden="true">
+        <svg viewBox="0 0 200 200">
+          <circle class="orbit__dashes" cx="100" cy="100" r="86" />
+        </svg>
+      </div>
+
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="ring__track" cx="100" cy="100" r="88" />
+          <circle class="ring__fill" id="ringFill" cx="100" cy="100" r="88" />
+        </svg>
+        <div class="ring__readout" id="ringReadout">
+          <span class="ring__value" id="ringValue"></span>
+        </div>
+      </div>
+
+      <div class="signal-state signal-state--idle" id="stateIdle">
+        <p class="signal-title">Your score will appear here</p>
+        <p class="signal-sub">Fill in the form and submit to generate a predicted mental health score.</p>
+      </div>
+
+      <div class="signal-state signal-state--loading" id="stateLoading" hidden>
+        <p class="signal-title">Reading the signal</p>
+        <p class="signal-sub">Running your habits through the model.</p>
+      </div>
+
+      <div class="signal-state signal-state--error" id="stateError" hidden role="alert">
+        <p class="signal-title signal-title--error">Something interrupted the read</p>
+        <p class="signal-sub" id="errorText">Something went wrong.</p>
+      </div>
+
+      <div class="signal-state signal-state--result" id="stateResult" hidden>
+        <p class="signal-title">Prediction ready</p>
+        <p class="signal-sub">Raw output from <code>/predict</code> — a data point, not a diagnosis.</p>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <footer class="footer">
+    <p>Connects to your local FastAPI service at <code id="apiUrlLabel">http://127.0.0.1:8000/predict</code> — <span id="apiStatus">checking…</span></p>
+  </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
