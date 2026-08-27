@@ -3,8 +3,8 @@
 /* ============================================================
    Config — must match the FastAPI Pydantic model exactly
    ============================================================ */
-const API_URL = 'http://127.0.0.1:8000/predict';
-const API_ROOT = 'http://127.0.0.1:8000/';
+const API_URL = 'https://mental-health-score-cuau.onrender.com/predict';
+const API_ROOT = 'https://mental-health-score-cuau.onrender.com/';
 
 // field -> { type, min, max } used for client-side validation + coercion
 const FIELD_SPEC = {
